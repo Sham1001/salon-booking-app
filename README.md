@@ -2,6 +2,10 @@
 
 A modern, responsive single-page website for a hair salon / grooming studio, built with React and Tailwind CSS. Includes a scroll-animated landing page, image gallery with lightbox, client testimonials, and a booking form that hands off directly to WhatsApp — no backend required.
 
+## Live Demo
+
+🔗 [https://salon-booking-app-lemon.vercel.app/](https://salon-booking-app-lemon.vercel.app/)
+
 ## Features
 
 - **Hero & About sections** — introduces the studio with a black-and-gold premium aesthetic
