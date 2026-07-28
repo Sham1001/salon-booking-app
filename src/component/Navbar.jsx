@@ -1,12 +1,50 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from "react-icons/fa";
 import logo from '../assets/favicon-v3.svg'
 
+const navItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'testimonial', label: 'Testimonials' },
+    { id: 'gallery', label: 'Gallery' },
+    { id: 'contact', label: 'Contact' },
+];
+
 const Navbar = () => {
     const [open, setOpen] = useState(false);
+    const [active, setActive] = useState('home');
 
-    const linkClass = "flex justify-between items-center w-full px-4 py-2 rounded-xl bg-[#1f1f1f] border border-gray-700 transition hover:text-[#D4AF37] hover:border-[#D4AF37]";
+    useEffect(() => {
+        const sections = navItems
+            .map(item => document.getElementById(item.id))
+            .filter(Boolean);
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setActive(entry.target.id);
+                    }
+                });
+            },
+            { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+        );
+
+        sections.forEach(section => observer.observe(section));
+
+        return () => observer.disconnect();
+    }, []);
+
+    const desktopLinkClass = (id) =>
+        `hover:text-[#D4AF37] hover:border-b-2 hover:border-[#D4AF37] ${
+            active === id ? 'text-[#D4AF37] border-b-2 border-[#D4AF37]' : ''
+        }`;
+
+    const mobileLinkClass = (id) =>
+        `flex justify-between items-center w-full px-4 py-2 rounded-xl bg-[#1f1f1f] border transition hover:text-[#D4AF37] ${
+            active === id ? 'text-[#D4AF37] border-[#D4AF37]' : 'border-gray-700'
+        }`;
 
     return (
         <nav className='h-20 bg-[#19150e]/30 backdrop-blur-lg border-b border-[#D4AF37]/15 flex justify-around md:justify-between items-center text-white md:px-20 sticky top-0 z-50'>
@@ -27,31 +65,13 @@ const Navbar = () => {
             </Link>
             <div>
                 <ul className="md:flex md:gap-10 hidden">
-                    <li className="hover:cursor-pointer">
-                        <a href="#home" className="hover:text-[#D4AF37] hover:border-b-2 hover:border-[#D4AF37]">
-                            Home
-                        </a>
-                    </li>
-                    <li className="hover:cursor-pointer">
-                        <a href="#about" className="hover:text-[#D4AF37] hover:border-b-2 hover:border-[#D4AF37]">
-                            About
-                        </a>
-                    </li>
-                    <li className="hover:cursor-pointer">
-                        <a href="#testimonial" className="hover:text-[#D4AF37] hover:border-b-2 hover:border-[#D4AF37]">
-                            Testimonials
-                        </a>
-                    </li>
-                    <li className="hover:cursor-pointer">
-                        <a href="#gallery" className="hover:text-[#D4AF37] hover:border-b-2 hover:border-[#D4AF37]">
-                            Gallery
-                        </a>
-                    </li>
-                    <li className="hover:cursor-pointer">
-                        <a href="#contact" className="hover:text-[#D4AF37] hover:border-b-2 hover:border-[#D4AF37]">
-                            Contact
-                        </a>
-                    </li>
+                    {navItems.map(item => (
+                        <li key={item.id} className="hover:cursor-pointer">
+                            <a href={`#${item.id}`} className={desktopLinkClass(item.id)}>
+                                {item.label}
+                            </a>
+                        </li>
+                    ))}
                 </ul>
             </div>
 
@@ -64,36 +84,18 @@ const Navbar = () => {
 
             {open && (
                 <ul className="absolute top-17 right-2 w-56 rounded-2xl bg-[linear-gradient(160deg,#0d0c0a,#19150e)] border border-[#D4AF37]/10 p-2 flex flex-col gap-2 md:hidden shadow-2xl">
-                    <li className="hover:cursor-pointer">
-                        <a href="#home" className={linkClass} onClick={() => setOpen(false)}>
-                            Home
-                            <span className="text-[#D4AF37] text-xl">›</span>
-                        </a>
-                    </li>
-                    <li className="hover:cursor-pointer">
-                        <a href="#about" className={linkClass} onClick={() => setOpen(false)}>
-                            About
-                            <span className="text-[#D4AF37] text-xl">›</span>
-                        </a>
-                    </li>
-                    <li className="hover:cursor-pointer">
-                        <a href="#testimonial" className={linkClass} onClick={() => setOpen(false)}>
-                            Testimonials
-                            <span className="text-[#D4AF37] text-xl">›</span>
-                        </a>
-                    </li>
-                    <li className="hover:cursor-pointer">
-                        <a href="#gallery" className={linkClass} onClick={() => setOpen(false)}>
-                            Gallery
-                            <span className="text-[#D4AF37] text-xl">›</span>
-                        </a>
-                    </li>
-                    <li className="hover:cursor-pointer">
-                        <a href="#contact" className={linkClass} onClick={() => setOpen(false)}>
-                            Contact
-                            <span className="text-[#D4AF37] text-xl">›</span>
-                        </a>
-                    </li>
+                    {navItems.map(item => (
+                        <li key={item.id} className="hover:cursor-pointer">
+                            <a
+                                href={`#${item.id}`}
+                                className={mobileLinkClass(item.id)}
+                                onClick={() => setOpen(false)}
+                            >
+                                {item.label}
+                                <span className="text-[#D4AF37] text-xl">›</span>
+                            </a>
+                        </li>
+                    ))}
                 </ul>
             )}
 
