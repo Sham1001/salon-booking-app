@@ -1,0 +1,41 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGrad" cx="35%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#241a0c"/>
+      <stop offset="55%" stop-color="#14100a"/>
+      <stop offset="100%" stop-color="#070605"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F6E3A1"/>
+      <stop offset="45%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#A67C22"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <circle cx="256" cy="256" r="248" fill="url(#bgGrad)"/>
+
+  <!-- single bold ring -->
+  <circle cx="256" cy="256" r="236" fill="none" stroke="url(#goldGrad)" stroke-width="10"/>
+
+  <!-- big bold scissors, filling most of the circle -->
+  <g transform="translate(256,258) rotate(-6) scale(1.55)" fill="none" stroke="url(#goldGrad)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- top blade -->
+    <path d="M -18 -14 L 96 -92" />
+    <!-- bottom blade -->
+    <path d="M -18 14 L 96 92" />
+
+    <!-- pivot screw -->
+    <circle cx="-18" cy="0" r="13" fill="url(#goldGrad)" stroke="none"/>
+
+    <!-- top handle ring -->
+    <circle cx="-72" cy="-42" r="26" stroke-width="15"/>
+    <!-- bottom handle ring -->
+    <circle cx="-72" cy="42" r="26" stroke-width="15"/>
+
+    <!-- handle connectors -->
+    <path d="M -52 -36 L -18 -8" />
+    <path d="M -52 36 L -18 8" />
+  </g>
+</svg>

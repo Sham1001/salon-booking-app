@@ -1,0 +1,54 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGrad" cx="35%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#241a0c"/>
+      <stop offset="55%" stop-color="#14100a"/>
+      <stop offset="100%" stop-color="#070605"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F6E3A1"/>
+      <stop offset="45%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#A67C22"/>
+    </linearGradient>
+    <linearGradient id="goldGradSoft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E7C765"/>
+      <stop offset="100%" stop-color="#B4892A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <circle cx="256" cy="256" r="248" fill="url(#bgGrad)"/>
+
+  <!-- outer hairline ring -->
+  <circle cx="256" cy="256" r="234" fill="none" stroke="url(#goldGrad)" stroke-width="2" opacity="0.85"/>
+  <!-- inner hairline ring for a jeweled double-border look -->
+  <circle cx="256" cy="256" r="222" fill="none" stroke="url(#goldGrad)" stroke-width="1" opacity="0.4"/>
+
+  <!-- elegant open scissors, fine line art, rotated slightly for movement -->
+  <g transform="translate(256,258) rotate(-8)" fill="none" stroke="url(#goldGrad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- top blade -->
+    <path d="M -18 -14 L 96 -92" />
+    <path d="M -18 -14 L 30 -6 Q 44 -3 52 6" />
+
+    <!-- bottom blade -->
+    <path d="M -18 14 L 96 92" />
+    <path d="M -18 14 L 30 6 Q 44 3 52 -6" />
+
+    <!-- pivot screw -->
+    <circle cx="-18" cy="0" r="9" fill="url(#goldGrad)" stroke="none"/>
+
+    <!-- top handle ring -->
+    <circle cx="-70" cy="-40" r="22" />
+    <!-- bottom handle ring -->
+    <circle cx="-70" cy="40" r="22" />
+
+    <!-- handle connectors -->
+    <path d="M -50 -34 L -20 -8" />
+    <path d="M -50 34 L -20 8" />
+  </g>
+
+  <!-- small flourish dots either side for a boutique monogram feel -->
+  <circle cx="146" cy="256" r="4" fill="url(#goldGradSoft)"/>
+  <circle cx="366" cy="256" r="4" fill="url(#goldGradSoft)"/>
+</svg>
